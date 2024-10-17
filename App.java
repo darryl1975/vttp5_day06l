@@ -23,6 +23,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import day06.MyImplementation;
+import day06.MyInterface;
 import day06.Person;
 import day06.Product;
 
@@ -97,15 +98,27 @@ public class App {
 
         Comparator<Person> compare = Comparator.comparing(p -> p.getFirstName());
         persons.sort(compare.reversed());
-        persons.forEach(p -> {
-            System.out.println(p.toString());
-        });
+        // persons.forEach(p -> {
+        //     System.out.println(p.toString());
+        // });
 
         Comparator<Person> compareMultiple = Comparator.comparing(Person::getFirstName)
                 .thenComparing(Person::getLastName);
         persons.sort(compareMultiple);
-        persons.forEach(p -> {
-            System.out.println(p.toString());
-        });
+        // persons.forEach(p -> {
+        //     System.out.println(p.toString());
+        // });
+
+
+        MyInterface<Integer> addOperation = (a, b) -> {
+            return a + b;
+        };
+
+        MyInterface<Integer> multiplyOperation = (a, b) -> {
+            return a * b;
+        };
+
+        System.out.println("add Operation: " + addOperation.process(3, 2));
+        System.out.println("multiply Operation: " + multiplyOperation.process(3, 2));
     }
 }
